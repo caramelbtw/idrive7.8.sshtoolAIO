@@ -174,6 +174,12 @@ class App:
 
         root.title("MGU Shell")
         root.configure(bg=BG)
+        icon_path = os.path.join(HERE, "docs", "icon.ico")
+        if os.path.isfile(icon_path):
+            try:
+                root.iconbitmap(icon_path)
+            except tk.TclError:
+                pass
 
         sw, sh = root.winfo_screenwidth(), root.winfo_screenheight()
         w = min(int(sw * 0.82), 1360)

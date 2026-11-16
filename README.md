@@ -6,7 +6,9 @@ SSH identity, and keep SSH running with debug mode off — no `B7F8E5` DTC.
 
 Run it once per head unit. SSH stays on permanently after that.
 
-![MGU Shell](docs/screenshot.png)
+![Setup](docs/screenshot-setup.png)
+
+![Shell](docs/screenshot-shell.png)
 
 ## Requirements
 
