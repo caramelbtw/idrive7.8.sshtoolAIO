@@ -33,7 +33,6 @@ python gui.py
 
 - **Flash + Enable** — one-time: flashes debug image, enrolls SSH, makes it persistent, turns debug off.
 - **Enable** — repair only: re-opens SSH on an already-flashed unit (no flash).
-- **Fix Key** — re-flashes with our key for units that refuse login after enrollment.
 - **Disable** — reverts to stock.
 
 ### Shell tab

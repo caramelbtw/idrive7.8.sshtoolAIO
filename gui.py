@@ -408,18 +408,15 @@ class App:
 
         row2 = tk.Frame(inner2, bg=SURFACE)
         row2.pack(fill="x")
-        row2.columnconfigure((0, 1, 2), weight=1, uniform="btn")
+        row2.columnconfigure((0, 1), weight=1, uniform="btn")
         self.btn_enable = self._label(ttk.Button, row2, "Enable",
                                       style="Green.TButton", command=self.do_enable)
-        self.btn_fix = self._label(ttk.Button, row2, "Fix Key",
-                                   style="Amber.TButton", command=self.do_fix_key)
         self.btn_disable = self._label(ttk.Button, row2, "Disable",
                                        style="Red.TButton", command=self.do_disable)
         self.btn_enable.grid(row=0, column=0, sticky="ew", padx=(0, 4))
-        self.btn_fix.grid(row=0, column=1, sticky="ew", padx=4)
-        self.btn_disable.grid(row=0, column=2, sticky="ew", padx=(4, 0))
+        self.btn_disable.grid(row=0, column=1, sticky="ew", padx=(4, 0))
 
-        self.action_buttons = [self.btn_flash, self.btn_enable, self.btn_disable, self.btn_fix]
+        self.action_buttons = [self.btn_flash, self.btn_enable, self.btn_disable]
 
         card3 = self._card(parent)
         card3.pack(fill="x")
@@ -1106,22 +1103,6 @@ class App:
             "VIN %s will be written.\n\nContinue?") % self.vin.get().strip()):
             return
         self._run(["flash"] + self._persist_args() + self._common_args(), "flash")
-
-    def do_fix_key(self):
-        if not self._require_variant():
-            return
-        if not self.vin.get().strip():
-            messagebox.showerror("VIN required",
-                "Fix-key re-flashes the debug image (writing the VIN),\n"
-                "so a VIN is required.")
-            return
-        if not messagebox.askyesno("Fix refusing SSH key?",
-            "Re-flashes the debug image carrying our key.\n"
-            "The unit enters programming mode and reboots;\n"
-            "CAFD coding is cleared.\n\n"
-            "VIN %s will be written.\n\nContinue?" % self.vin.get().strip()):
-            return
-        self._run(["fix-key"] + self._persist_args() + self._common_args(), "fix-key")
 
     def do_disable(self):
         if not messagebox.askyesno(self.i18n.t("Disable SSH?"),
